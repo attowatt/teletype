@@ -58,6 +58,7 @@ static void op_I2M_C_REF_get(const void *data, scene_state_t *ss, exec_state_t *
 static void op_I2M_C_DIR_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
 static void op_I2M_C_VCUR_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
 static void op_I2M_C_TCUR_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
+static void op_I2M_C_DCUR_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
 static void op_I2M_C_QN_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
 static void op_I2M_C_QV_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
 static void op_I2M_CC_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
@@ -182,6 +183,8 @@ const tele_op_t op_I2M_C_VCUR          = MAKE_GET_OP(I2M.C.VCUR, op_I2M_C_VCUR_g
 const tele_op_t op_I2M_C_VTILDE        = MAKE_ALIAS_OP(I2M.C.V~, op_I2M_C_VCUR_get, NULL, 4, false);
 const tele_op_t op_I2M_C_TCUR          = MAKE_GET_OP(I2M.C.TCUR, op_I2M_C_TCUR_get, 4, false);
 const tele_op_t op_I2M_C_TTILDE        = MAKE_ALIAS_OP(I2M.C.T~, op_I2M_C_TCUR_get, NULL, 4, false);
+const tele_op_t op_I2M_C_DCUR          = MAKE_GET_OP(I2M.C.DCUR, op_I2M_C_DCUR_get, 4, false);
+const tele_op_t op_I2M_C_DTILDE        = MAKE_ALIAS_OP(I2M.C.D~, op_I2M_C_DCUR_get, NULL, 4, false);
 const tele_op_t op_I2M_C_QN            = MAKE_GET_OP(I2M.C.QN, op_I2M_C_QN_get, 3, true);
 const tele_op_t op_I2M_C_QV            = MAKE_GET_OP(I2M.C.QV, op_I2M_C_QV_get, 3, true);
 const tele_op_t op_I2M_CC              = MAKE_GET_OP(I2M.CC, op_I2M_CC_get, 2, false);
@@ -750,6 +753,15 @@ static void op_I2M_C_TCUR_get(const void *data, scene_state_t *ss,
     s16 start = cs_pop(cs);
     s16 end = cs_pop(cs);
     SEND_B6(164, chord, curve, start >> 8, start & 0xff, end >> 8, end & 0xff);
+}
+
+static void op_I2M_C_DCUR_get(const void *data, scene_state_t *ss,
+                              exec_state_t *es, command_state_t *cs) {
+    s16 chord = cs_pop(cs);
+    s16 curve = cs_pop(cs);
+    s16 start = cs_pop(cs);
+    s16 end = cs_pop(cs);
+    SEND_B6(168, chord, curve, start >> 8, start & 0xff, end >> 8, end & 0xff);
 }
 
 static void op_I2M_C_QN_get(const void *data, scene_state_t *ss,

@@ -54,6 +54,8 @@ extern const tele_op_t op_I2M_C_VCUR;
 extern const tele_op_t op_I2M_C_VTILDE;
 extern const tele_op_t op_I2M_C_TCUR;
 extern const tele_op_t op_I2M_C_TTILDE;
+extern const tele_op_t op_I2M_C_DCUR;
+extern const tele_op_t op_I2M_C_DTILDE;
 extern const tele_op_t op_I2M_C_QN;
 extern const tele_op_t op_I2M_C_QV;
 extern const tele_op_t op_I2M_CC;

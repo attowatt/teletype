@@ -876,6 +876,8 @@ typedef enum {
     E_OP_I2M_C_VTILDE,
     E_OP_I2M_C_TCUR,
     E_OP_I2M_C_TTILDE,
+    E_OP_I2M_C_DCUR,
+    E_OP_I2M_C_DTILDE,
     E_OP_I2M_C_B,
     E_OP_I2M_NT,
     E_OP_I2M_C_POUND,

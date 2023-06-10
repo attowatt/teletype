@@ -930,6 +930,8 @@
         "I2M.C.V~"        => { MATCH_OP(E_OP_I2M_C_VTILDE ); };
         "I2M.C.TCUR"      => { MATCH_OP(E_OP_I2M_C_TCUR ); };
         "I2M.C.T~"        => { MATCH_OP(E_OP_I2M_C_TTILDE ); };
+        "I2M.C.DCUR"      => { MATCH_OP(E_OP_I2M_C_DCUR ); };
+        "I2M.C.D~"        => { MATCH_OP(E_OP_I2M_C_DTILDE ); };
         "I2M.C.QN"        => { MATCH_OP(E_OP_I2M_C_QN ); };
         "I2M.C.QV"        => { MATCH_OP(E_OP_I2M_C_QV ); };
         "I2M.CC"          => { MATCH_OP(E_OP_I2M_CC ); };
