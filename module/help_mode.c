@@ -1616,7 +1616,12 @@ const char* help17[HELP17_LENGTH] = { "17/17 I2C2MIDI",
                                       " ",
                                       "I2M.PANIC",
                                       "    SEND NOTE OFF TO ALL",
-                                      "    RESET NOTE PARAMETERS" };
+                                      "    RESET NOTE PARAMETERS",
+                                      "I2M.PRESET x",
+                                      "I2M.PRE x",
+                                      "    LOAD PRESET FROM SD CARD", 
+                                      "I2M.SAVE x",
+                                      "    SAVE PRESET ON SD CARD" };
 
 // clang-format on
 

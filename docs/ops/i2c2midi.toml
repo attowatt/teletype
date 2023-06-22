@@ -620,3 +620,12 @@ short = "Get the latest controller value (0..127) received via MIDI in"
 ["I2M.PANIC"]  
 prototype = "I2M.PANIC"  
 short = "Send MIDI Note Off messages for all notes on all channels, and reset note duration, shift, repetition, ratcheting, min/max"
+
+["I2M.PRESET"]
+prototype = "I2M.PRESET x"
+aliases = ["I2M.PRE"]
+short = "Load preset `x` from SD card"
+
+["I2M.SAVE"]
+prototype = "I2M.SAVE x"
+short = "Save as preset `x` to SD card"

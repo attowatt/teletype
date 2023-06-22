@@ -129,7 +129,8 @@ static void op_I2M_SOLO_get(const void *data, scene_state_t *ss, exec_state_t *e
 static void op_I2M_SOLO_set(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
 static void op_I2M_SOLO_POUND_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
 static void op_I2M_SOLO_POUND_set(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
-
+static void op_I2M_PRESET_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
+static void op_I2M_SAVE_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
 static void op_I2M_TEST_get(const void *data, scene_state_t *ss, exec_state_t *es, command_state_t *cs);
 
 const tele_op_t op_I2M_PANIC           = MAKE_GET_OP(I2M.PANIC, op_I2M_PANIC_get, 0, false);
@@ -245,7 +246,9 @@ const tele_op_t op_I2M_MUTE            = MAKE_GET_SET_OP(I2M.MUTE, op_I2M_MUTE_g
 const tele_op_t op_I2M_MUTE_POUND      = MAKE_GET_SET_OP(I2M.MUTE#, op_I2M_MUTE_POUND_get, op_I2M_MUTE_POUND_set, 1, true);
 const tele_op_t op_I2M_SOLO            = MAKE_GET_SET_OP(I2M.SOLO, op_I2M_SOLO_get, op_I2M_SOLO_set, 0, true);
 const tele_op_t op_I2M_SOLO_POUND      = MAKE_GET_SET_OP(I2M.SOLO#, op_I2M_SOLO_POUND_get, op_I2M_SOLO_POUND_set, 1, true);
-
+const tele_op_t op_I2M_PRESET          = MAKE_GET_OP(I2M.PRESET, op_I2M_PRESET_get, 1, false);
+const tele_op_t op_I2M_PRE             = MAKE_GET_OP(I2M.PRE, op_I2M_PRESET_get, 1, false);
+const tele_op_t op_I2M_SAVE            = MAKE_GET_OP(I2M.SAVE, op_I2M_SAVE_get, 1, false);
 const tele_op_t op_I2M_TEST            = MAKE_GET_OP(I2M.TEST, op_I2M_TEST_get, 2, false);
 
 // clang-format on
@@ -1394,6 +1397,20 @@ static void op_I2M_SOLO_POUND_set(const void *data, scene_state_t *ss,
     RETURN_IF_OUT_OF_RANGE(channel, 0, MAX_CHANNEL);
     RETURN_IF_OUT_OF_RANGE(value, 0, 127);
     SEND_B2(16, channel, value);
+}
+
+static void op_I2M_PRESET_get(const void *data, scene_state_t *ss,
+                           exec_state_t *es, command_state_t *cs) {
+    s16 fileNumber = cs_pop(cs);
+    RETURN_IF_OUT_OF_RANGE(fileNumber, 0, 255);
+    SEND_B1(169, fileNumber);
+}
+
+static void op_I2M_SAVE_get(const void *data, scene_state_t *ss,
+                           exec_state_t *es, command_state_t *cs) {
+    s16 fileNumber = cs_pop(cs);
+    RETURN_IF_OUT_OF_RANGE(fileNumber, 0, 255);
+    SEND_B1(170, fileNumber);
 }
 
 static void op_I2M_TEST_get(const void *data, scene_state_t *ss,
